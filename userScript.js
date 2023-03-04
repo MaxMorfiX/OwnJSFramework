@@ -1,4 +1,4 @@
-import {Morf} from "/Morf.js";
+import {Morf} from "/Framework/Morf.js";
 
 class PlayerController extends Morf.NodeComponent {
     constructor() {

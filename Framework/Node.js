@@ -2,11 +2,16 @@
 
 
 export class Node {
-    name;
+
+    #name;
+    get name() { return this.#name; }
+    parentScene;
+    sceneManager;
+
     #components = {};
 
     constructor(name, components) {
-        this.name = name;
+        this.#name = name;
         this.#components = components;
 
         for(let i in this.#components) {

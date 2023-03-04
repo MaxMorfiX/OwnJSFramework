@@ -1,4 +1,4 @@
-import {Morf} from "/Morf.js";
+import {Morf} from "/Framework/Morf.js";
 
 
 export class SceneManager {
@@ -9,6 +9,7 @@ export class SceneManager {
     addScene(scene) {
         if(scene instanceof Morf.Scene) {
             this.#scenes[scene.name] = scene;
+            scene.sceneManager = this;
         }
     }
 
@@ -21,6 +22,12 @@ export class SceneManager {
 
         for(let i in this.#currentScene.getAllNodes()) {
             this.#currentScene.getAllNodes()[i].update();
+        }
+    }
+    
+    constructor(scenes) {
+        for(let i in scenes) {
+            this.addScene(scene);
         }
     }
 

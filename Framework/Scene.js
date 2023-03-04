@@ -3,7 +3,11 @@
 
 export class Scene {
 
-    name;
+    #name;
+    get name() { return this.#name; }
+    
+    sceneManager;
+
     #nodes = {};
 
     getNode(nodeName) { return this.#nodes[nodeName]; }
@@ -15,6 +19,8 @@ export class Scene {
             console.error("can't add multiple nodes with one name to the scene");
         }
 
+        node.parentScene = this;
+        node.sceneManager = this;
         this.#nodes[node.name] = node;
     }
     deleteNode(nodeName) {
@@ -26,7 +32,10 @@ export class Scene {
 
     constructor(name, nodes) {
         this.name = name;
-        this.#nodes = nodes;
+
+        for(let i in nodes) {
+            this.addNode(nodes[i]);
+        }
     }
 
 }
