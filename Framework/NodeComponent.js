@@ -16,7 +16,6 @@ export class NodeComponent {
         }
 
         this.#node = val;
-        this.whenAssigned();
     }
 
     constructor(componentName) {

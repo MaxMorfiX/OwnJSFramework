@@ -95,4 +95,12 @@ export class Transform extends NodeComponent {
         }
     }
 
+    localPosToGlobalPos(pos) {
+        return pos.rotate(this.rotation).scale(this.size).add(this.position);
+    }
+
+    globalPosToLocalPos(pos) {
+        return pos.subtract(this.position).scale(1/this.size).rotate(-this.rotation);
+    }
+
 }

@@ -12,12 +12,22 @@ export class Node {
 
     constructor(name, components) {
         this.#name = name;
-
-        this.addComponent(new Morf.components.Transform());
-
+        
         for(let i in components) {
             this.addComponent(components[i]);
         }
+
+        if(!this.getComponent("Transform")) {
+            this.addComponent(new Morf.components.Transform());
+        }
+
+        components = this.getAllComponents();
+
+        for(let i in components) {
+            let component = components[i];
+            component.whenAssigned();
+        }
+
     }
 
     addComponent(component) {
@@ -31,7 +41,12 @@ export class Node {
     }
 
     getComponent(componentName) {
+        if(this.#components[componentName]) {
+            return this.#components[componentName];
+        }
+
         return this.#components[componentName];
+        // console.error("can't find component '" + componentName + "' in " + this.name);
     }
 
     deleteComponent(componentName) {

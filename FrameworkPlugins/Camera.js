@@ -1,5 +1,6 @@
 import {Morf} from "/Framework/Morf.js";
 import {NodeComponent} from "/Framework/NodeComponent.js";
+import {Vector2} from "/FrameworkPlugins/Vector2.js";
 
 export class Camera extends NodeComponent {
     canvas;
@@ -32,5 +33,17 @@ export class Camera extends NodeComponent {
                 sr.draw(this);
             }
         }
+    }
+
+    globalPosToCanvasPos(pos) {
+        console.log(this.node);
+        let retPos = this.transform.globalPosToLocalPos(pos);
+
+        retPos = new Vector2(
+            retPos.x + this.canvas.width/2,
+            this.canvas.height/2 - retPos.y
+        );
+
+        return retPos;
     }
 }

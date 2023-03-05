@@ -156,6 +156,12 @@ export class Vector2 {
 		return vector;
 	}
 
+	scale(alpha) {
+		let vector = this.clone();
+		vector.magnitude = vector.magnitude*alpha
+		return vector;
+	}
+
 	toPrecision(precision) {
 		var vector = this.clone();
 		vector.x = vector.x.toFixed(precision);

@@ -17,8 +17,8 @@ export class SpriteShape {
             throw new Error("FYI: Instance of Abstract class cannot be instantiated");
         }
 
-        this.strokeStyle = params.strokeStyle || params.lineColor || this.strokeStyle;
-        this.fillStyle = params.fillStyle || params.fillColor || this.fillStyle;
+        this.strokeStyle = params.strokeStyle || params.lineColor || params.color || this.strokeStyle;
+        this.fillStyle = params.fillStyle || params.fillColor || params.color || this.fillStyle;
         this.lineWidth = params.lineWidth || this.lineWidth;
         this.lineCap = params.lineCap || this.lineCap;
         this.lineJoin = params.lineJoin || this.lineJoin;
@@ -49,27 +49,17 @@ export class SpriteShape {
         ctx.closePath();
     }
 
-    static localCoordinatesToGlobalCoordinates(pos, transform) {
-        let retPos = pos;
+    static localPosToGlobalPos(pos, transform) {
+        return pos.rotate(transform.rotation).scale(transform.size).add(transform.position);
 
         return retPos;
     }
 
-    static globalCoordinatesToCanvasCoordinates(pos, camera) {
-        let retPos = pos;
-        retPos = pos.subtract(camera.node.getComponent("Transform").position);
-
-        retPos = new Vector2(
-            retPos.x + camera.canvas.width/2,
-            camera.canvas.height/2 - retPos.y
-        );
-
-        return retPos;
-    }
+    
 
     static localCoordinatesToCanvasCoordinates(pos, transform, camera) {
-        let retPos = this.localCoordinatesToGlobalCoordinates(pos, transform);
-        retPos = this.globalCoordinatesToCanvasCoordinates(retPos, camera);
+        let retPos = this.localPosToGlobalPos(pos, transform);
+        retPos = camera.globalPosToCanvasPos(retPos, camera);
 
         return retPos;
     }
