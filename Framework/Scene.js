@@ -2,9 +2,6 @@ import {Morf} from "/Framework/Morf.js";
 
 export class Scene {
 
-    #name;
-    get name() { return this.#name; }
-    
     sceneManager;
 
     #nodes = {};
@@ -19,7 +16,6 @@ export class Scene {
         }
 
         node.parentScene = this;
-        node.sceneManager = this;
         this.#nodes[node.name] = node;
     }
     deleteNode(nodeName) {
@@ -29,9 +25,7 @@ export class Scene {
         return this.#nodes;
     }
 
-    constructor(name, nodes) {
-        this.#name = name;
-
+    constructor(nodes, sceneManager) {
         for(let i in nodes) {
             this.addNode(nodes[i]);
         }

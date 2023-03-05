@@ -51,8 +51,6 @@ export class SpriteShape {
 
     static localPosToGlobalPos(pos, transform) {
         return pos.rotate(transform.rotation).scale(transform.size).add(transform.position);
-
-        return retPos;
     }
 
     

@@ -3,14 +3,15 @@ import {Morf} from "/Framework/Morf.js";
 
 export class SceneManager {
     
-    #scenes = {};
+    #scenePrefabs = {};
     #currentScene;
+    #currentSceneName;
+    
+    #stopGenerateThisFrame = false;
 
-    addScene(scene) {
-        if(scene instanceof Morf.Scene) {
-            this.#scenes[scene.name] = scene;
-            scene.sceneManager = this;
-        }
+    addScene(name, scene) {
+        this.#scenePrefabs[name] = scene;
+        scene.sceneManager = this;
     }
 
     runScene(sceneName) {
@@ -18,9 +19,17 @@ export class SceneManager {
             this.#callFunctionOverEveryNodeComponentInScene("whenSceneEnds");
         }
 
-        this.#currentScene = this.#scenes[sceneName];
+        this.#currentScene = this.#scenePrefabs[sceneName].instantiate();
+        this.#currentSceneName = sceneName;
+        this.#currentScene.sceneManager = this;
 
         this.#callFunctionOverEveryNodeComponentInScene("whenSceneStarts");
+
+        this.#stopGenerateThisFrame = true;
+    }
+
+    reloadScene() {
+        this.runScene(this.#currentSceneName);
     }
 
     update() {
@@ -32,13 +41,16 @@ export class SceneManager {
         this.#callFunctionOverEveryNodeComponentInScene("lateUpdate");
         this.#callFunctionOverEveryNodeComponentInScene("superLateUpdate");
 
-
+        this.#stopGenerateThisFrame = false;
     }
 
     #callFunctionOverEveryNodeComponentInScene(functionName, scene = this.#currentScene) {
         let nodes = scene.getAllNodes();
 
         for(let i in nodes) {
+
+            if(this.#stopGenerateThisFrame) return;
+
             let node = nodes[i];
             let comopnents = node.getAllComponents();
 

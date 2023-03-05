@@ -6,7 +6,6 @@ export class Node {
     #name;
     get name() { return this.#name; }
     parentScene;
-    sceneManager;
 
     #components = {};
 

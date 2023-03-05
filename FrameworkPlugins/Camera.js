@@ -36,7 +36,6 @@ export class Camera extends NodeComponent {
     }
 
     globalPosToCanvasPos(pos) {
-        console.log(this.node);
         let retPos = this.transform.globalPosToLocalPos(pos);
 
         retPos = new Vector2(
