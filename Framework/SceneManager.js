@@ -2,6 +2,8 @@ import {Morf} from "/Framework/Morf.js";
 
 
 export class SceneManager {
+
+    framework;
     
     #scenePrefabs = {};
     #currentScene;

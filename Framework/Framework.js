@@ -8,6 +8,7 @@ export class Framework {
 
     constructor(){
         this.#sceneManager = new Morf.SceneManager;
+        this.sceneManager.framework = this;
 
         requestAnimationFrame(this.update.bind(this));
     }
