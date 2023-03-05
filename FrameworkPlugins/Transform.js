@@ -1,12 +1,11 @@
 import {Morf} from "/Framework/Morf.js";
-
 import {NodeComponent} from "/Framework/NodeComponent.js";
 
 export class Transform extends NodeComponent {
 
     #position = new Morf.Vector2();
     #rotation = 0;
-    #scale = new Morf.Vector2();
+    #size = 1;
 
     get position() { return this.#position; }
     set position(val) {
@@ -18,8 +17,8 @@ export class Transform extends NodeComponent {
         this.rotate(val - this.#rotation);
     }
 
-    get size() { return this.#scale; }
-    set size(val) { this.#scale = val; }
+    get size() { return this.#size; }
+    set size(val) { this.#size = val; }
 
     move(vec) {
         for(let i in this.#children) {
@@ -35,18 +34,18 @@ export class Transform extends NodeComponent {
             this.#children[i].rotate(rad, center);
         }
         
-        this.rotation += rad;
+        this.#rotation += rad;
         if(center = this.position) return;
 
         //TODO: rotation around a center to change position
     }
 
-    scale(vec, center = this.position) {
+    scale(k, center = this.position) {
         for(let i in this.#children) {
-            this.#children[i].scale(vec, center);
+            this.#children[i].scale(k, center);
         }
         
-        this.scale += vec;
+        this.#size *= k;
         //TODO: scale around a center to change position
     }
 
@@ -80,16 +79,20 @@ export class Transform extends NodeComponent {
     }
 
     constructor(position, rotation, scale, parent) {
+        super("Transform");
+
         this.position = position || new Morf.Vector2();
         this.rotation = rotation || 0;
         this.scale = scale || new Morf.Vector2();
 
-        if(!(parent instanceof Transform)) {
+        this.parent = parent;
+    }
+
+    whenAssigned() {
+        if(!(this.parent instanceof Transform)) {
             this.parent = this.node.parentScene;
             return;
         }
-
-        this.parent = parent;
     }
 
 }

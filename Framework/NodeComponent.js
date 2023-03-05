@@ -1,4 +1,4 @@
-
+import {Morf} from "/Framework/Morf.js";
 
 
 export class NodeComponent {
@@ -8,7 +8,7 @@ export class NodeComponent {
 
     get name() { return this.#componentName }
 
-    get node() { return this.node; }
+    get node() { return this.#node; }
     set node(val) {
         if(this.#node !== null) {
             console.error("can't change parent node of a nodeComponent");
@@ -16,12 +16,22 @@ export class NodeComponent {
         }
 
         this.#node = val;
+        this.whenAssigned();
     }
 
     constructor(componentName) {
         this.#componentName = componentName;
     }
 
+    superEarlyUpdate() {}
+    earlyUpdate() {}
     update() {}
+    lateUpdate() {}
+    superLateUpdate() {}
+
+    whenAssigned() {}
+
+    whenSceneEnds() {}
+    whenSceneStarts() {}
 
 }

@@ -1,5 +1,3 @@
-import {Morf} from "/Framework/Morf.js";
-
 export class Vector2 {
 
     x;

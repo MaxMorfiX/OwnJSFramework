@@ -14,14 +14,39 @@ export class SceneManager {
     }
 
     runScene(sceneName) {
+        if(this.#currentScene) {
+            this.#callFunctionOverEveryNodeComponentInScene("whenSceneEnds");
+        }
+
         this.#currentScene = this.#scenes[sceneName];
+
+        this.#callFunctionOverEveryNodeComponentInScene("whenSceneStarts");
     }
 
     update() {
         if(this.#currentScene === null) return;
 
-        for(let i in this.#currentScene.getAllNodes()) {
-            this.#currentScene.getAllNodes()[i].update();
+        this.#callFunctionOverEveryNodeComponentInScene("superEarlyUpdate");
+        this.#callFunctionOverEveryNodeComponentInScene("earlyUpdate");
+        this.#callFunctionOverEveryNodeComponentInScene("update");
+        this.#callFunctionOverEveryNodeComponentInScene("lateUpdate");
+        this.#callFunctionOverEveryNodeComponentInScene("superLateUpdate");
+
+
+    }
+
+    #callFunctionOverEveryNodeComponentInScene(functionName, scene = this.#currentScene) {
+        let nodes = scene.getAllNodes();
+
+        for(let i in nodes) {
+            let node = nodes[i];
+            let comopnents = node.getAllComponents();
+
+            for(let i in comopnents) {
+                let component = comopnents[i];
+
+                component[functionName]();
+            }
         }
     }
     

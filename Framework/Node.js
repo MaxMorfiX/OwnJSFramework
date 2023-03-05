@@ -1,4 +1,4 @@
-
+import {Morf} from "/Framework/Morf.js";
 
 
 export class Node {
@@ -12,16 +12,17 @@ export class Node {
 
     constructor(name, components) {
         this.#name = name;
-        this.#components = components;
 
-        for(let i in this.#components) {
-            this.#components[i].node = this;
+        this.addComponent(new Morf.components.Transform());
+
+        for(let i in components) {
+            this.addComponent(components[i]);
         }
     }
 
     addComponent(component) {
-        if(this.#components[component.name]) {
-            console.error("there's lready an instance of the component assigned to the node");
+        if(this.#components[component.name] && this.#components[component.name] !== "Transform") {
+            console.error("there's aready an instance of the component assigned to the node");
             return;
         }
         

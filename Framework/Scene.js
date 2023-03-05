@@ -1,5 +1,4 @@
-
-
+import {Morf} from "/Framework/Morf.js";
 
 export class Scene {
 
@@ -12,7 +11,7 @@ export class Scene {
 
     getNode(nodeName) { return this.#nodes[nodeName]; }
     addNode(node) {
-        if(node instanceof Morf.Node) {
+        if(!(node instanceof Morf.Node)) {
             console.error("can't add non-node to the scene");
         }
         if(this.#nodes[node.name] !== undefined) {
@@ -31,7 +30,7 @@ export class Scene {
     }
 
     constructor(name, nodes) {
-        this.name = name;
+        this.#name = name;
 
         for(let i in nodes) {
             this.addNode(nodes[i]);
