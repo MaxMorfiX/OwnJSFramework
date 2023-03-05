@@ -1,3 +1,4 @@
+import {Vector2} from "/FrameworkPlugins/Vector2.js";
 
 
 export class SpriteShape {
@@ -46,6 +47,31 @@ export class SpriteShape {
 
         ctx.stroke();
         ctx.closePath();
+    }
+
+    static localCoordinatesToGlobalCoordinates(pos, transform) {
+        let retPos = pos;
+
+        return retPos;
+    }
+
+    static globalCoordinatesToCanvasCoordinates(pos, camera) {
+        let retPos = pos;
+        retPos = pos.subtract(camera.node.getComponent("Transform").position);
+
+        retPos = new Vector2(
+            retPos.x + camera.canvas.width/2,
+            camera.canvas.height/2 - retPos.y
+        );
+
+        return retPos;
+    }
+
+    static localCoordinatesToCanvasCoordinates(pos, transform, camera) {
+        let retPos = this.localCoordinatesToGlobalCoordinates(pos, transform);
+        retPos = this.globalCoordinatesToCanvasCoordinates(retPos, camera);
+
+        return retPos;
     }
 
 }

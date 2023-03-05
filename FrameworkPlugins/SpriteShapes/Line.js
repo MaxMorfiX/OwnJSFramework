@@ -18,11 +18,18 @@ export class Line extends SpriteShape {
         
     }
     
-    draw(camera, SpriteRenderer) {
+    draw(camera, spriteRenderer) {
         let ctx = camera.drawingContext;
-            
-        let pos1 = this.pos1;
-        let pos2 = this.pos2;
+        
+        let pos1 = SpriteShape.localCoordinatesToCanvasCoordinates(this.pos1, spriteRenderer.node.getComponent("Transform"), camera);
+        let pos2 = SpriteShape.localCoordinatesToCanvasCoordinates(this.pos2, spriteRenderer.node.getComponent("Transform"), camera);
+
+        // console.table({
+        //     "pos1 before": this.pos1,
+        //     "pos1 after": pos1,
+        //     "pos2 before": this.pos2,
+        //     "pos2 after": pos2,
+        // });
         
         ctx.moveTo(pos1.x, pos1.y);
         ctx.lineTo(pos2.x, pos2.y);

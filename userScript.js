@@ -2,6 +2,7 @@ import {Vector2} from "/FrameworkPlugins/Vector2.js";
 import {Morf} from "/Framework/Morf.js";
 
 
+
 class PlayerController extends Morf.NodeComponent {
     constructor() {
         super("PlayerController");
@@ -20,8 +21,10 @@ class CameraController extends Morf.NodeComponent {
     }
 
     update() {
-        let pos = new Vector2(Math.cos(this.t/100)*1000, 0);
+        let pos = new Vector2(Math.cos(this.t/10)*400, 0);
         this.node.getComponent("Transform").position = pos;
+
+        // console.log(pos);
 
         this.t++;
     }

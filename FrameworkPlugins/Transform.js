@@ -9,7 +9,7 @@ export class Transform extends NodeComponent {
 
     get position() { return this.#position; }
     set position(val) {
-        this.move(val - this.#position);
+        this.move(val.subtract(this.#position));
     }
 
     get rotation() { return this.#rotation; }
@@ -24,8 +24,8 @@ export class Transform extends NodeComponent {
         for(let i in this.#children) {
             this.#children[i].move(vec);
         }
-        
-        this.#position += vec;
+
+        this.#position = this.#position.add(vec);
     }
 
     rotate(rad, center = this.position) {

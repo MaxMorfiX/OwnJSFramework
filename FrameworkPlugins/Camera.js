@@ -23,6 +23,8 @@ export class Camera extends NodeComponent {
     superLateUpdate() {
         let nodes = this.node.parentScene.getAllNodes();
 
+        this.drawingContext.clearRect(0, 0, this.canvas.width, this.canvas.height);
+
         for(let i in nodes) {
             let sr = nodes[i].getComponent("SpriteRenderer");
 
