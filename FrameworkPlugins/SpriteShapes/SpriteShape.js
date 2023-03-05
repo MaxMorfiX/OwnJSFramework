@@ -22,7 +22,7 @@ export class SpriteShape {
         this.lineWidth = params.lineWidth || this.lineWidth;
         this.lineCap = params.lineCap || this.lineCap;
         this.lineJoin = params.lineJoin || this.lineJoin;
-        this.fFill = params.fillOrNot || params.fFill || this.fFill;
+        this.fFill = params.fillOrNot || params.fFill || params.fill || this.fFill;
 
     }
 

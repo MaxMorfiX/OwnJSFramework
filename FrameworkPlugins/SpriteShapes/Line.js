@@ -1,9 +1,8 @@
 import {SpriteShape} from "/FrameworkPlugins/SpriteShapes/SpriteShape.js";
-import {Vector2} from "/FrameworkPlugins/Vector2.js";
 
 export class Line extends SpriteShape {
-    pos1 = new Vector2();
-    pos2 = new Vector2();
+    pos1;
+    pos2;
     
     constructor(pos1, pos2, params = {}) {
         

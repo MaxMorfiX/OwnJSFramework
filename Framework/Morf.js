@@ -13,6 +13,8 @@ import {SpriteRenderer} from "/FrameworkPlugins/SpriteRenderer.js";
 import {SpriteShape} from "/FrameworkPlugins/SpriteShapes/SpriteShape.js";
 
 import {Line} from "/FrameworkPlugins/SpriteShapes/Line.js";
+import {Polygon} from "/FrameworkPlugins/SpriteShapes/Polygon.js";
+import {Rectangle} from "/FrameworkPlugins/SpriteShapes/Rectangle.js";
 
 export class Morf {
     static Framework = Framework;
@@ -34,5 +36,7 @@ export class Morf {
 
     static spriteShapes = {
         "Line": Line,
+        "Polygon": Polygon,
+        "Rectangle": Rectangle,
     }
 }

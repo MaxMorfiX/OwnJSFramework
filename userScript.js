@@ -35,9 +35,10 @@ fw.sceneManager.addScene("sampleScene", new Morf.Prefab(function() { return new 
     "player": new Morf.Node("player", {
         "PlayerController": new PlayerController(),
         "SpriteRenderer": new Morf.components.SpriteRenderer([
-            new Morf.spriteShapes.Line(new Vector2(1, 1), new Vector2(-1, -1), {
-                "lineWidth": 100,
+            new Morf.spriteShapes.Rectangle(new Vector2(-50, -50), new Vector2(50, 50), {
+                "lineWidth": 0,
                 "color": "darkgreen",
+                "fill": true,
             }),
         ]),
     }),
