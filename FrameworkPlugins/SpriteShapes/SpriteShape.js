@@ -64,4 +64,8 @@ export class SpriteShape {
         return camera.node.getComponent("Transform").globalLengthToLocalLength(transform.localLengthToGlobalLength(length));
     }
 
+    static localRotationToCanvasRotation(rotation, transform, camera) {
+        return camera.node.getComponent("Transform").globalRotationToLocalRotation(transform.localRotationToGlobalRotation(rotation));
+    }
+
 }
