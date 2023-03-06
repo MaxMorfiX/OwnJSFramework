@@ -15,8 +15,8 @@ export class Framework {
         document.addEventListener("keyup", this.onKeyUp.bind(this));
 
         let html = document.querySelector("html");
-        html.onmousedown = this.onKeyDown.bind(this, {"code": "mouse"});
-        html.onmouseup = this.onKeyUp.bind(this, {"code": "mouse"});
+        html.onmousedown = this.onKeyDown.bind(this, {"keyCode": "mouse"});
+        html.onmouseup = this.onKeyUp.bind(this, {"keyCode": "mouse"});
 
         requestAnimationFrame(this.update.bind(this));
     }
@@ -45,7 +45,7 @@ export class Framework {
     }
 
     getKey(code) {
-        return this.getKeyObject(code);
+        return this.getKeyObject(code).isPressed;
     }
     getKeyDown(code) {
         return this.getKeyObject(code).isPressedDown;

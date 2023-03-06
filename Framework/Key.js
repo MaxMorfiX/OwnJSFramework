@@ -12,9 +12,9 @@ export class Key {
 
     constructor() {}
     
-    toBoolean() {
-        return this.isPressed;
-    }
+    // toBoolean() {
+    //     return this.isPressed;
+    // }
 
     pressDown() {
         this.#down = true;
