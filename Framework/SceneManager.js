@@ -25,7 +25,9 @@ export class SceneManager {
         this.#currentScene.sceneManager = this;
 
         this.#callFunctionOverEveryNodeComponentInScene("whenSceneStarts");
+        this.#callFunctionOverEveryNodeComponentInScene("earlyStart");
         this.#callFunctionOverEveryNodeComponentInScene("start");
+        this.#callFunctionOverEveryNodeComponentInScene("lateStart");
 
         this.#stopGenerateThisFrame = true;
     }

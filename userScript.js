@@ -6,11 +6,21 @@ let fw = new Morf.Framework();
 class PlayerController extends Morf.NodeComponent {
 
     t = 0;
+    camera;
 
-    update() {
-        let pos = new Vector2(Math.cos(this.t/50)*400, 0);
+    start() {
+        this.camera = this.node.parentScene.getNode("main camera").getComponent("Camera");
+        // console.log(
+        //     this.camera.globalPosToCanvasPos(
+        //     this.camera.canvasPosToGlobalPos(new Vector2(30, 302))
+        // ));
+    }
 
-        this.node.getComponent("Transform").position = pos;
+    update() { 
+        // let pos = new Vector2(Math.cos(this.t/50)*400, 0);
+        // this.node.getComponent("Transform").position = pos;
+
+        this.node.getComponent("Transform").position = this.camera.mouseWorldPos.clone();
         this.node.getComponent("Transform").rotation += Math.sin(this.t/50)*Math.PI*0.03;
         this.node.getComponent("Transform").size = Math.cos(this.t/25);
 

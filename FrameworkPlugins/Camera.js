@@ -3,6 +3,19 @@ import {NodeComponent} from "/Framework/NodeComponent.js";
 import {Vector2} from "/FrameworkPlugins/Vector2.js";
 
 export class Camera extends NodeComponent {
+
+    #mousePosition = new Vector2();
+
+    get mousePos() { return this.#mousePosition }
+    get mousePosition() { return this.#mousePosition }
+
+    get mouseWorldPosition() { 
+        return this.canvasPosToGlobalPos(this.#mousePosition); 
+    }
+    get mouseWorldPos() { 
+        return this.canvasPosToGlobalPos(this.#mousePosition);
+    }
+
     canvas;
     drawingContext;
     zoom = 1;
@@ -15,9 +28,11 @@ export class Camera extends NodeComponent {
 
         this.canvas = canvas;
         this.drawingContext = canvas.getContext("2d");
+
+        canvas.onmousemove = this.onmousemove.bind(this);
     }
 
-    start() {
+    earlyStart() {
         this.transform = this.node.getComponent("Transform");
     }
 
@@ -45,4 +60,25 @@ export class Camera extends NodeComponent {
 
         return retPos;
     }
+
+    canvasPosToGlobalPos(pos) {
+        let retPos = new Vector2(
+            pos.x - this.canvas.width/2,
+            this.canvas.height/2 - pos.y
+        );
+            
+        retPos = this.transform.localPosToGlobalPos(retPos);
+
+        return retPos;
+    }
+
+    onmousemove(e) {
+        let rect = this.canvas.getBoundingClientRect();
+
+        let x = e.clientX - rect.left;
+        let y = e.clientY - rect.top;
+
+        this.#mousePosition = new Vector2(x, y);
+    }
+
 }

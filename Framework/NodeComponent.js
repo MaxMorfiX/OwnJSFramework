@@ -30,6 +30,8 @@ export class NodeComponent {
     whenSceneEnds() {}
     whenSceneStarts() {}
 
+    earlyStart() {}
     start() {}
+    lateStart() {}
 
 }
