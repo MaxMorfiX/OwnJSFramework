@@ -11,13 +11,13 @@ export class Camera extends NodeComponent {
     transform;
 
     constructor(canvas) {
-        super("Camera");
+        super();
 
         this.canvas = canvas;
         this.drawingContext = canvas.getContext("2d");
     }
 
-    whenAssigned() {
+    start() {
         this.transform = this.node.getComponent("Transform");
     }
 

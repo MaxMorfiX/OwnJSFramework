@@ -9,10 +9,10 @@ export class Node {
 
     #components = {};
 
-    constructor(name, components) {
+    constructor(name, components = []) {
         this.#name = name;
         
-        for(let i in components) {
+        for(let i = 0; i < components.length; i++) {
             this.addComponent(components[i]);
         }
 
@@ -22,7 +22,7 @@ export class Node {
 
         components = this.getAllComponents();
 
-        for(let i in components) {
+        for(let i = 0; i < components.length; i++) {
             let component = components[i];
             component.whenAssigned();
         }

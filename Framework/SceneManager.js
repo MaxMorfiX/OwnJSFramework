@@ -64,8 +64,8 @@ export class SceneManager {
         }
     }
     
-    constructor(scenes) {
-        for(let i in scenes) {
+    constructor(scenes = []) {
+        for(let i = 0; i < scenes.length; i++) {
             this.addScene(scene);
         }
     }

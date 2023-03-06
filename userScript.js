@@ -7,15 +7,12 @@ class PlayerController extends Morf.NodeComponent {
 
     t = 0;
 
-    constructor() {
-        super("PlayerController");
-    }
-
     update() {
         let pos = new Vector2(Math.cos(this.t/50)*400, 0);
 
         this.node.getComponent("Transform").position = pos;
         this.node.getComponent("Transform").rotation += Math.sin(this.t/50)*Math.PI*0.03;
+        this.node.getComponent("Transform").size = Math.cos(this.t/25);
 
         // if(this.t >= 158*2) {
         //     // console.log("reload scene");
@@ -30,10 +27,6 @@ class CameraController extends Morf.NodeComponent {
 
     framework;
     transform;
-
-    constructor() {
-        super("CameraController");
-    }
 
     start() {
         this.framework = this.node.parentScene.sceneManager.framework;
@@ -58,21 +51,21 @@ class CameraController extends Morf.NodeComponent {
 
 let canvas = document.getElementById("canvas");
 
-fw.sceneManager.addScene("sampleScene", new Morf.Prefab(function() { return new Morf.Scene({
-    "player": new Morf.Node("player", {
-        "PlayerController": new PlayerController(),
-        "SpriteRenderer": new Morf.components.SpriteRenderer([
+fw.sceneManager.addScene("sampleScene", new Morf.Prefab(function() { return new Morf.Scene([
+    new Morf.Node("player", [
+        new PlayerController(),
+        new Morf.components.SpriteRenderer([
             new Morf.spriteShapes.Rectangle(new Vector2(-50, -50), new Vector2(50, 50), {
                 "lineWidth": 0,
                 "color": "darkgreen",
                 "fill": true,
             }),
         ]),
-    }),
-    "main camera": new Morf.Node("main camera", {
-        "Camera": new Morf.components.Camera(canvas),
-        "CameraController": new CameraController(),
-    })
-}); } ));
+    ]),
+    new Morf.Node("main camera", [
+        new Morf.components.Camera(canvas),
+        new CameraController(),
+    ])
+]);}));
 
 fw.sceneManager.runScene("sampleScene");

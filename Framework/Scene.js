@@ -25,8 +25,8 @@ export class Scene {
         return this.#nodes;
     }
 
-    constructor(nodes, sceneManager) {
-        for(let i in nodes) {
+    constructor(nodes = []) {
+        for(let i = 0; i < nodes.length; i++) {
             this.addNode(nodes[i]);
         }
     }

@@ -79,7 +79,7 @@ export class Transform extends NodeComponent {
     }
 
     constructor(position, rotation, scale, parent) {
-        super("Transform");
+        super();
 
         this.position = position || new Morf.Vector2();
         this.rotation = rotation || 0;

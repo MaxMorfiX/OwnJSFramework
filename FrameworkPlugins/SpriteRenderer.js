@@ -16,7 +16,7 @@ export class SpriteRenderer extends NodeComponent {
     }
 
     constructor(spriteShapes) {
-        super("SpriteRenderer");
+        super();
 
         this.spriteShapes = spriteShapes;
     }

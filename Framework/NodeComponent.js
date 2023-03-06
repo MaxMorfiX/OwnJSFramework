@@ -4,9 +4,8 @@ import {Morf} from "/Framework/Morf.js";
 export class NodeComponent {
     
     #node = null;
-    #componentName = null;
 
-    get name() { return this.#componentName }
+    get name() { return this.constructor.name }
 
     get node() { return this.#node; }
     set node(val) {
@@ -18,9 +17,7 @@ export class NodeComponent {
         this.#node = val;
     }
 
-    constructor(componentName) {
-        this.#componentName = componentName;
-    }
+    constructor() {}
 
     superEarlyUpdate() {}
     earlyUpdate() {}
