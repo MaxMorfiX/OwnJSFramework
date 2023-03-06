@@ -12,7 +12,7 @@ export class Polygon extends SpriteShape {
 
         this.points = points;
 
-        console.table(points);
+        // console.table(points);
     }
     
     draw(camera, spriteRenderer) {

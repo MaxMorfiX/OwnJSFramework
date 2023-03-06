@@ -33,4 +33,6 @@ export class NodeComponent {
     whenSceneEnds() {}
     whenSceneStarts() {}
 
+    start() {}
+
 }

@@ -11,9 +11,8 @@ export class SceneManager {
     
     #stopGenerateThisFrame = false;
 
-    addScene(name, scene) {
-        this.#scenePrefabs[name] = scene;
-        scene.sceneManager = this;
+    addScene(name, scenePrefab) {
+        this.#scenePrefabs[name] = scenePrefab;
     }
 
     runScene(sceneName) {
@@ -26,6 +25,7 @@ export class SceneManager {
         this.#currentScene.sceneManager = this;
 
         this.#callFunctionOverEveryNodeComponentInScene("whenSceneStarts");
+        this.#callFunctionOverEveryNodeComponentInScene("start");
 
         this.#stopGenerateThisFrame = true;
     }
