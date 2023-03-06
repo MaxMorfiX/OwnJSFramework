@@ -18,16 +18,17 @@ export class Camera extends NodeComponent {
 
     canvas;
     drawingContext;
-    zoom = 1;
-    backgroundShapes = [];
+    backgroundColor;
 
     transform;
 
-    constructor(canvas) {
+    constructor(canvas, params = {}) {
         super();
 
         this.canvas = canvas;
         this.drawingContext = canvas.getContext("2d");
+
+        this.backgroundColor = params.backgroundColor || "white";
 
         canvas.onmousemove = this.onmousemove.bind(this);
     }
@@ -39,15 +40,31 @@ export class Camera extends NodeComponent {
     superLateUpdate() {
         let nodes = this.node.parentScene.getAllNodes();
 
-        this.drawingContext.clearRect(0, 0, this.canvas.width, this.canvas.height);
+        this.drawBackground();
+
+        if(this.node.getComponent("SpriteRenderer")) { 
+            this.node.getComponent("SpriteRenderer").draw(this); //background sprite
+        }
 
         for(let i in nodes) {
+            if(nodes[i] === this.node) continue;
+
             let sr = nodes[i].getComponent("SpriteRenderer");
 
             if(sr) {
                 sr.draw(this);
             }
         }
+    }
+
+    drawBackground() {
+        this.drawingContext.beginPath();
+        this.drawingContext.fillStyle = this.backgroundColor;
+        this.drawingContext.strokeStyle = this.backgroundColor;
+        this.drawingContext.rect(0, 0, this.canvas.width, this.canvas.height);
+        this.drawingContext.fill();
+        this.drawingContext.stroke();
+        this.drawingContext.closePath();
     }
 
     globalPosToCanvasPos(pos) {

@@ -59,10 +59,10 @@ class CameraController extends Morf.NodeComponent {
             this.transform.position.x += 10;
         }
         if(this.framework.getKey(40)) {
-            this.transform.position.y -= 10;
+            this.transform.size -= 0.1;
         }
         if(this.framework.getKey(38)) {
-            this.transform.position.y += 10;
+            this.transform.size += 0.1;
         }
     }
 }
@@ -75,6 +75,11 @@ fw.sceneManager.addScene("sampleScene", new Morf.Prefab(function() { return new 
     new Morf.Node("player", [
         new PlayerController(),
         new Morf.components.SpriteRenderer([
+            new Morf.spriteShapes.Circle(new Vector2(), 70, {
+                "color": "darkgray",
+                "fill": true,
+            }),
+
             new Morf.spriteShapes.Rectangle(new Vector2(-50, -50), new Vector2(50, 50), {
                 "lineWidth": 0,
                 "color": "darkgreen",
@@ -85,7 +90,9 @@ fw.sceneManager.addScene("sampleScene", new Morf.Prefab(function() { return new 
 
     
     new Morf.Node("main camera", [
-        new Morf.components.Camera(canvas),
+        new Morf.components.Camera(canvas, { 
+            "backgroundColor": "gray",
+        }),
         new CameraController(),
     ]),
 

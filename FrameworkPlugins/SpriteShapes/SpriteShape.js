@@ -26,12 +26,12 @@ export class SpriteShape {
 
     }
 
-    startDraw(camera) {
+    startDraw(camera, spriteRenderer) {
         let ctx = camera.drawingContext;
         
         ctx.strokeStyle = this.strokeStyle;
         ctx.fillStyle = this.fillStyle;
-        ctx.lineWidth = this.lineWidth;
+        ctx.lineWidth = SpriteShape.localLengthToCanvasLength(this.lineWidth, spriteRenderer.node.getComponent("Transform"), camera);
         ctx.lineCap = this.lineCap;
         ctx.lineJoin = this.lineJoin;
 
@@ -53,13 +53,15 @@ export class SpriteShape {
         return pos.rotate(transform.rotation).scale(transform.size).add(transform.position);
     }
 
-    
-
     static localCoordinatesToCanvasCoordinates(pos, transform, camera) {
         let retPos = this.localPosToGlobalPos(pos, transform);
         retPos = camera.globalPosToCanvasPos(retPos, camera);
 
         return retPos;
+    }
+
+    static localLengthToCanvasLength(length, transform, camera) {
+        return camera.node.getComponent("Transform").globalLengthToLocalLength(transform.localLengthToGlobalLength(length));
     }
 
 }

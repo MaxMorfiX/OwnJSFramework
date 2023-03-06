@@ -103,4 +103,12 @@ export class Transform extends NodeComponent {
         return pos.subtract(this.position).scale(1/this.size).rotate(-this.rotation);
     }
 
+    localLengthToGlobalLength(length) {
+        return length*this.size;
+    }
+
+    globalLengthToLocalLength(length) {
+        return length/this.size;
+    }
+
 }
