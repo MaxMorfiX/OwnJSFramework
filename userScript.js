@@ -52,6 +52,8 @@ class CameraController extends Morf.NodeComponent {
 let canvas = document.getElementById("canvas");
 
 fw.sceneManager.addScene("sampleScene", new Morf.Prefab(function() { return new Morf.Scene([
+
+
     new Morf.Node("player", [
         new PlayerController(),
         new Morf.components.SpriteRenderer([
@@ -62,10 +64,14 @@ fw.sceneManager.addScene("sampleScene", new Morf.Prefab(function() { return new 
             }),
         ]),
     ]),
+
+    
     new Morf.Node("main camera", [
         new Morf.components.Camera(canvas),
         new CameraController(),
-    ])
+    ]),
+
+
 ]);}));
 
 fw.sceneManager.runScene("sampleScene");
