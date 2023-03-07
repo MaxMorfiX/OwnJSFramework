@@ -111,7 +111,7 @@ export class Transform extends NodeComponent {
         return length/this.size;
     }
 
-    localRotationToLGlobalRotation(rotation) {
+    localRotationToGlobalRotation(rotation) {
         return rotation + this.rotation;
     }
 

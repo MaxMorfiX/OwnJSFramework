@@ -85,6 +85,12 @@ fw.sceneManager.addScene("sampleScene", new Morf.Prefab(function() { return new 
                 "color": "darkgreen",
                 "fill": true,
             }),
+
+            new Morf.spriteShapes.Text(new Vector2(), "LOL", {
+                "color": "blue",
+                "fill": true,
+                "fontSize": 50,
+            }),
         ]),
     ]),
 

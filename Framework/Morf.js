@@ -18,6 +18,7 @@ import {Polygon} from "/FrameworkPlugins/SpriteShapes/Polygon.js";
 import {Rectangle} from "/FrameworkPlugins/SpriteShapes/Rectangle.js";
 import {Arc} from "/FrameworkPlugins/SpriteShapes/Arc.js";
 import {Circle} from "/FrameworkPlugins/SpriteShapes/Circle.js";
+import {Text} from "/FrameworkPlugins/SpriteShapes/Text.js";
 
 export class Morf {
     static Framework = Framework;
@@ -44,5 +45,6 @@ export class Morf {
         "Rectangle": Rectangle,
         "Arc": Arc,
         "Circle": Circle,
+        "Text": Text,
     }
 }
