@@ -1,4 +1,4 @@
-import {SpriteShape} from "/FrameworkPlugins/SpriteShapes/SpriteShape.js";
+import {SpriteShape} from "/FrameworkPlugins/Graphics/SpriteShapes/SpriteShape.js";
 
 export class Arc extends SpriteShape {
 

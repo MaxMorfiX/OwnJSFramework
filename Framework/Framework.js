@@ -1,4 +1,4 @@
-import {Morf} from "/Framework/Morf.js";
+import {Engine} from "/Framework/Morf.js";
 
 export class Framework {
     
@@ -8,7 +8,7 @@ export class Framework {
     #keys = {};
 
     constructor(){
-        this.#sceneManager = new Morf.SceneManager;
+        this.#sceneManager = new Engine.SceneManager;
         this.sceneManager.framework = this;
 
         document.addEventListener("keydown", this.onKeyDown.bind(this));
@@ -37,7 +37,7 @@ export class Framework {
         let key = this.#keys[code];
 
         if(!key) {
-            this.#keys[code] = new Morf.Key();
+            this.#keys[code] = new Engine.Key();
             return this.getKey(code);
         }
 

@@ -1,5 +1,5 @@
-import {Polygon} from "/FrameworkPlugins/SpriteShapes/Polygon.js";
-import {Vector2} from "/FrameworkPlugins/Vector2.js";
+import {Polygon} from "/FrameworkPlugins/Graphics/SpriteShapes/Polygon.js";
+import {Vector2} from "/Framework/Vector2.js";
 
 export class Rectangle extends Polygon {
     

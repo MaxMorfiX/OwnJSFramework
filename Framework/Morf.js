@@ -6,21 +6,21 @@ import {NodeComponent} from "/Framework/NodeComponent.js";
 import {Prefab} from "/Framework/Prefab.js";
 import {Key} from "/Framework/Key.js";
 
-import {Vector2} from "/FrameworkPlugins/Vector2.js";
+import {Vector2} from "/Framework/Vector2.js";
 
-import {Transform} from "/FrameworkPlugins/Transform.js";
-import {Camera} from "/FrameworkPlugins/Camera.js";
-import {SpriteRenderer} from "/FrameworkPlugins/SpriteRenderer.js";
+import {Transform} from "/Framework/Transform.js";
+import {Camera} from "/FrameworkPlugins/Graphics/Camera.js";
+import {SpriteRenderer} from "/FrameworkPlugins/Graphics/SpriteRenderer.js";
 
-import {SpriteShape} from "/FrameworkPlugins/SpriteShapes/SpriteShape.js";
-import {Line} from "/FrameworkPlugins/SpriteShapes/Line.js";
-import {Polygon} from "/FrameworkPlugins/SpriteShapes/Polygon.js";
-import {Rectangle} from "/FrameworkPlugins/SpriteShapes/Rectangle.js";
-import {Arc} from "/FrameworkPlugins/SpriteShapes/Arc.js";
-import {Circle} from "/FrameworkPlugins/SpriteShapes/Circle.js";
-import {Text} from "/FrameworkPlugins/SpriteShapes/Text.js";
+import {SpriteShape} from "/FrameworkPlugins/Graphics/SpriteShapes/SpriteShape.js";
+import {Line} from "/FrameworkPlugins/Graphics/SpriteShapes/Line.js";
+import {Polygon} from "/FrameworkPlugins/Graphics/SpriteShapes/Polygon.js";
+import {Rectangle} from "/FrameworkPlugins/Graphics/SpriteShapes/Rectangle.js";
+import {Arc} from "/FrameworkPlugins/Graphics/SpriteShapes/Arc.js";
+import {Circle} from "/FrameworkPlugins/Graphics/SpriteShapes/Circle.js";
+import {Text} from "/FrameworkPlugins/Graphics/SpriteShapes/Text.js";
 
-export class Morf {
+class Engine {
     static Framework = Framework;
     static SceneManager = SceneManager;
     static Scene = Scene;
@@ -32,19 +32,26 @@ export class Morf {
     static Key = Key;
 
     static components = {
-        "Transform": Transform,
-        "Camera": Camera,
-        "SpriteRenderer": SpriteRenderer,
+        "Transform": Transform
+    }
+}
+
+class Graphics {
+    static components = {
+        Camera,
+        SpriteRenderer
     }
 
     static SpriteShape = SpriteShape;
 
     static spriteShapes = {
-        "Line": Line,
-        "Polygon": Polygon,
-        "Rectangle": Rectangle,
-        "Arc": Arc,
-        "Circle": Circle,
-        "Text": Text,
+        Line,
+        Polygon,
+        Rectangle,
+        Arc,
+        Circle,
+        Text
     }
 }
+
+export {Engine, Graphics, Vector2}

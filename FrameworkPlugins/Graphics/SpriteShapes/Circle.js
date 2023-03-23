@@ -1,4 +1,4 @@
-import {Arc} from "/FrameworkPlugins/SpriteShapes/Arc.js";
+import {Arc} from "/FrameworkPlugins/Graphics/SpriteShapes/Arc.js";
 
 export class Circle extends Arc {
     

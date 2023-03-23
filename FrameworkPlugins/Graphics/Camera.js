@@ -1,6 +1,6 @@
-import {Morf} from "/Framework/Morf.js";
+import {Engine} from "/Framework/Morf.js";
 import {NodeComponent} from "/Framework/NodeComponent.js";
-import {Vector2} from "/FrameworkPlugins/Vector2.js";
+import {Vector2} from "/Framework/Vector2.js";
 
 export class Camera extends NodeComponent {
 

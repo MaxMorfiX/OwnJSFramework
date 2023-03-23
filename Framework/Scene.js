@@ -1,4 +1,4 @@
-import {Morf} from "/Framework/Morf.js";
+import {Engine} from "/Framework/Morf.js";
 
 export class Scene {
 
@@ -8,7 +8,7 @@ export class Scene {
 
     getNode(nodeName) { return this.#nodes[nodeName]; }
     addNode(node) {
-        if(!(node instanceof Morf.Node)) {
+        if(!(node instanceof Engine.Node)) {
             console.error("can't add non-node to the scene");
         }
         if(this.#nodes[node.name] !== undefined) {

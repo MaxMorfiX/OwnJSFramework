@@ -1,4 +1,3 @@
-import {Vector2} from "/FrameworkPlugins/Vector2.js";
 
 
 export class SpriteShape {

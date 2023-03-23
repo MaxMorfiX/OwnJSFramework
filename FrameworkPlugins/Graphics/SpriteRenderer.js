@@ -1,4 +1,3 @@
-import {Morf} from "/Framework/Morf.js";
 import {NodeComponent} from "/Framework/NodeComponent.js";
 
 export class SpriteRenderer extends NodeComponent {

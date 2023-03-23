@@ -1,9 +1,8 @@
-import {Morf} from "/Framework/Morf.js";
-import {Vector2} from "/FrameworkPlugins/Vector2.js";
+import {Engine, Graphics, Vector2} from "/Framework/Morf.js";
 
-let fw = new Morf.Framework();
+let fw = new Engine.Framework();
 
-class PlayerController extends Morf.NodeComponent {
+class PlayerController extends Engine.NodeComponent {
 
     t = 0;
     camera;
@@ -41,7 +40,7 @@ class PlayerController extends Morf.NodeComponent {
     }
 }
 
-class CameraController extends Morf.NodeComponent {
+class CameraController extends Engine.NodeComponent {
 
     framework;
     transform;
@@ -69,24 +68,24 @@ class CameraController extends Morf.NodeComponent {
 
 let canvas = document.getElementById("canvas");
 
-fw.sceneManager.addScene("sampleScene", new Morf.Prefab(function() { return new Morf.Scene([
+fw.sceneManager.addScene("sampleScene", new Engine.Prefab(function() { return new Engine.Scene([
 
 
-    new Morf.Node("player", [
+    new Engine.Node("player", [
         new PlayerController(),
-        new Morf.components.SpriteRenderer([
-            new Morf.spriteShapes.Circle(new Vector2(), 70, {
+        new Graphics.components.SpriteRenderer([
+            new Graphics.spriteShapes.Circle(new Vector2(), 70, {
                 "color": "darkgray",
                 "fill": true,
             }),
 
-            new Morf.spriteShapes.Rectangle(new Vector2(-50, -50), new Vector2(50, 50), {
+            new Graphics.spriteShapes.Rectangle(new Vector2(-50, -50), new Vector2(50, 50), {
                 "lineWidth": 0,
                 "color": "darkgreen",
                 "fill": true,
             }),
 
-            new Morf.spriteShapes.Text(new Vector2(), "LOL", {
+            new Graphics.spriteShapes.Text(new Vector2(), "LOL", {
                 "color": "blue",
                 "fill": true,
                 "fontSize": 50,
@@ -95,8 +94,8 @@ fw.sceneManager.addScene("sampleScene", new Morf.Prefab(function() { return new 
     ]),
 
     
-    new Morf.Node("main camera", [
-        new Morf.components.Camera(canvas, { 
+    new Engine.Node("main camera", [
+        new Graphics.components.Camera(canvas, { 
             "backgroundColor": "gray",
         }),
         new CameraController(),

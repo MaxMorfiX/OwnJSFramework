@@ -1,4 +1,4 @@
-import {Morf} from "/Framework/Morf.js";
+import {Engine} from "/Framework/Morf.js";
 
 
 export class Node {
@@ -17,7 +17,7 @@ export class Node {
         }
 
         if(!this.getComponent("Transform")) {
-            this.addComponent(new Morf.components.Transform());
+            this.addComponent(new Engine.components.Transform());
         }
 
         components = this.getAllComponents();
