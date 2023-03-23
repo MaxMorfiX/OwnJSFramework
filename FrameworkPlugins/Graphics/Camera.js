@@ -37,7 +37,7 @@ export class Camera extends NodeComponent {
         this.transform = this.node.getComponent("Transform");
     }
 
-    superLateUpdate() {
+    displayUpdate() {
         let nodes = this.node.parentScene.getAllNodes();
 
         this.drawBackground();

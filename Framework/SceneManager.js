@@ -44,6 +44,7 @@ export class SceneManager {
         this.#callFunctionOverEveryNodeComponentInScene("update");
         this.#callFunctionOverEveryNodeComponentInScene("lateUpdate");
         this.#callFunctionOverEveryNodeComponentInScene("superLateUpdate");
+        this.#callFunctionOverEveryNodeComponentInScene("displayUpdate");
 
         this.#stopGenerateThisFrame = false;
     }

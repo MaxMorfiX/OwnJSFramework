@@ -23,6 +23,7 @@ export class NodeComponent {
     update() {}
     lateUpdate() {}
     superLateUpdate() {}
+    displayUpdate() {}
 
     whenAssigned() {}
 
